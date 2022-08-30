@@ -19,7 +19,6 @@ Disadvantage over arrays:
 •	Not cache friendly, since elements are not stored at contiguous memory locations.
 •	Takes a lot of time in traversing and changing the pointers
 •	Pointers are confusing to work on.
-•	
 
 Representation:
 A linked list is represented by a pointer (head) to the first node of the linked list.
@@ -56,12 +55,12 @@ When multiple applications have to run at a time.
 Circular Doubly Linked Lists are used for implementation of advanced data structures like Fibonacci Heap.
 
 Time Complexity		Worst Case		Average Case
-•	Search: 					O(n)				O(n)
+•	Search: 				O(n)				O(n)
 •	Insert:					O(1)				O(1)	
 •	Deletion:				O(1)				O(1)	
 
 Space Complexity		
-Search: 					O(n)	
+Search: 				O(n)	
 Insert:					O(1)	
 Deletion:				O(1)	
 
