@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+int main()
+{
+    struct node *head,*temp,*newnode,*prevnode;
+    head=0;
+    int choice;
+    while(choice)
+    {
+        newnode=(struct node *)malloc(sizeof(struct node));
+        printf("enter the data:");
+        scanf("%d",&newnode->data);
+        newnode->next=0;
+        if(head==0)
+        {
+            head=newnode;
+            temp=newnode;
+        }
+        else
+        {
+            temp->next=newnode;
+            temp=newnode;
+        }
+        printf("enter your choice(0,1): ");
+        scanf("%d",&choice);
+
+    }
+    temp=head;
+    while(temp->next!=0)
+    {
+        prevnode=temp;
+        temp=temp->next;
+    }
+    if(temp==head)
+    {
+        head=0;
+        free(temp);
+    }
+    else
+    {
+        prevnode->next=0;
+        free (temp);
+    }
+    prevnode=head;
+    printf("after deletion from end the resultant list is: ");
+    while(prevnode!=0)
+    {
+        printf("%d ",prevnode->data);
+        prevnode=prevnode->next;
+    }
+}
