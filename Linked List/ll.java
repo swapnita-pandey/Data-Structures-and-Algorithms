@@ -53,6 +53,7 @@ class ll {
       return;
   }
 
+  //Reverse the linked list
   public Node reverse(Node node) {
       Node prev = null;
       Node current = node;
