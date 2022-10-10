@@ -1,0 +1,23 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+bool compare(int a,int b)
+{
+	return a<=b;
+
+}
+int main()
+{
+	int coin[]={20,30,100,50};
+	int n=sizeof(coin)/sizeof(int);
+	int money;
+	cout<<"enter the money ";
+	cin>>money;
+	while(money>0)
+	{
+	
+	int index=lower_bound(coin,coin+n,money,compare)-coin-1;
+	cout<<coin[index]<<endl;
+	money=money-coin[index];
+}
+}
