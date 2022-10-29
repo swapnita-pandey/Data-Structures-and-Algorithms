@@ -1,0 +1,105 @@
+import java.util.Scanner;
+
+public class heap {
+    public static class minheap{
+        int []a;
+        int size;
+        int cap;
+        minheap(int c){
+            a=new int[c];
+            size=0;
+            cap=c;
+        }
+        int l(int i){
+            return (2*i+1);
+        }
+        int r(int i){
+            return (2*i+2);
+        }
+        int parent(int i){
+            return (i-1)/2;
+        }
+
+        public void insert(int x){
+            if(size==cap){
+                return;
+            }
+            size++;
+            a[size-1]=x;
+            int i=size-1;
+            while (i!=0 && a[parent(i)]>a[i]) {
+                swap(a[i],a[parent(i)]);
+                i=parent(i);
+            }
+
+
+        }
+        public void minheapfy(int i){
+            int ll=l(i);
+            int rr=r(i);
+            int smallest=i;
+            if(ll<size && a[ll]<a[i]){
+                smallest=ll;
+            }
+            if(rr<size && a[rr]<a[smallest]){
+                smallest=rr;
+            }
+            if(smallest !=i){
+             swap(a[i],a[smallest]);
+             minheapfy(smallest);
+            }
+        }
+
+        public int extractmin(){
+            if(size==0){
+                return Integer.MAX_VALUE;
+            }
+            if(size==1){
+                size--;
+                return a[0];
+            }
+            swap(a[0],a[size-1]);
+            size--;
+            minheapfy(0);
+            return a[size];
+        }
+
+        public void deckey(int i, int x){
+            a[i]=x;
+            while(i!=0 && a[parent(i)]>a[i]){
+                swap(a[i],a[parent(i)]);
+                i=parent(i);
+            }
+        }
+
+        public void heapbuilder(){
+            for(int i=(size-2)/2; i>=0;i--){
+                minheapfy(i);
+            }
+        }
+
+        public void swap(int n, int m){
+            int temp= n;
+            n=m;
+            m=temp;
+        }
+
+        public void main(String[] args) {
+            Scanner a = new Scanner(System.in);
+            int c=a.nextInt();
+            minheap z=new minheap(c);
+            int length = a.nextInt();
+            int [] a1 = new int[length];
+            for(int i=0; i<length; i++ ) {
+                a1[i]=a.nextInt();
+            }
+            int i=0;
+            while (i<length) {
+                z.insert(a1[i]);
+                i++;
+            }
+        }
+
+    }
+
+}
