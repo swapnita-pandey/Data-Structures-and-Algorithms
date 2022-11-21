@@ -77,6 +77,13 @@ class BTree {
             }
         }
     }
+    /*
+    The above code will not work if the node to be deleted is the deepest node
+     itself because after the function deletDeepest(root, temp) completes execution,
+      the key_node gets deleted(as here key_node is equal to temp)and after which
+       replacing key_node‘s data with the deepest node’s data(temp‘s data) throws
+        a runtime error. 
+    */
 
     // Function to delete given element
     // in binary tree
