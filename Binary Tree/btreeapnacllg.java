@@ -35,6 +35,7 @@ public class btreeapnacllg
         }
     }
 
+    // All three are DFS
     public static void preorder(Node node) {
         // N -> L -> R
         if (node == null)
@@ -67,6 +68,11 @@ public class btreeapnacllg
 
     public static void levelOrder(Node root)
     {
+        // O(n)
+        // BFS
+        // As soon as you take out null, add another null to the queue
+        // so that you know that you have to add a new line now
+        // Here we utilize the FIFO property of the queue
         if(root == null)
         {
             return;
@@ -130,6 +136,7 @@ public class btreeapnacllg
 
     public static int height(Node root)
     {
+        // O(n)
         if(root == null)
             return 0;
         int leftHeight = height(root.left);
@@ -141,11 +148,22 @@ public class btreeapnacllg
 
     public static int diameter(Node root)
     {
+        // Case 1: Diameter through root
+        // Case 2: Diameter does not go through root
+        // O(N^2)
         if(root == null)
             return 0;
 
+        // Diameter does not go through root
+        // Case 1: Longest Diameter through left subtree
         int diam1 = diameter(root.left);
+
+        // Diameter does not go through root
+        // Case 2: Longest Diameter through right subtree
         int diam2 = diameter(root.right);
+
+        // Diameter through root
+        // Case 3: Height of left subtree + Height of right subtree + 1
         int diam3 = height(root.left) + height(root.right) + 1;
 
         return Math.max(diam3, Math.max(diam1, diam2));
@@ -236,11 +254,14 @@ public class btreeapnacllg
 /*
     public boolean isIdentical(TreeNode root, TreeNode subRoot)
     {
+        // Either both trees were initially empty, or we have reached the leaf nodes
         if(root == null && subRoot == null)
         {
             return true;
         }
 
+        // Reached the leaf of one of them, 
+        // but the other tree is still not completely matched
         if(root == null || subRoot == null)
         {
             return false;
@@ -255,16 +276,24 @@ public class btreeapnacllg
 
     public boolean isSubtree(TreeNode root, TreeNode subRoot)
     {
+        // Because null is in every tree, so this empty 
+        // subtree can be found in every Tree
         if(subRoot == null)
         {
             return true;
         }
 
+        // If parent tree is null, no match can be found
         if(root == null)
         {
             return false;
         }
 
+        // At any position where the value of the root 
+        // matches the value of the subroot we will 
+        // match the left and right subtrees
+
+        // Created a separate function for matching the trees
         if(root.val == subRoot.val)
         {
             if(isIdentical(root, subRoot))
@@ -272,6 +301,7 @@ public class btreeapnacllg
                 return true;
             }
         }
-        return isSubtree(root.left, subTree) || isSubtree(root.right, subRoot);
+        // otherwise matching the left and right subtree
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 */
