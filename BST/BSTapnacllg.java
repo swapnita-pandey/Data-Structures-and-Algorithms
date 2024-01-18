@@ -1,5 +1,6 @@
 import java.util.*;
 
+// BST makes search efficient
 public class BSTapnacllg
 {
     static class Node
@@ -16,17 +17,22 @@ public class BSTapnacllg
 
     public static Node insert(Node root, int val)
     {
+        // O(H) as the same pattern is followed to check the position 
+        // of node insertion as is used for searching a node in a BST
+        // Left and right subtrees are also BST with no duplicates
         if(root == null)
         {
             root = new Node(val);
             return root;
         }
 
+        // Left subtree nodes < root
         if(root.data > val)
         {
             // left subtree
             root.left = insert(root.left, val);
         }
+        // right subtree nodes > root
         else
         {
             root.right = insert(root.right, val);
@@ -36,6 +42,7 @@ public class BSTapnacllg
 
     public static void inorder(Node root)
     {
+        // Inorder traversal will give a sorted sequence
         if(root == null)
         {
             return;
@@ -118,11 +125,16 @@ public class BSTapnacllg
 
     public static boolean search(Node root, int key)
     {
-        // O(H)
+        // O(H) ~ O(log N) in most cases
+        // In worst case, i.e., in case if we find a skewed tree
+        // Time complexity is worst i.e., O(N)
         if(root == null)
         {
             return false;
         }
+
+        // If key value is greater than root value than 
+        // it will be found in the left subtree
         if(root.data > key)
         {
             // Left Subtree
@@ -132,6 +144,9 @@ public class BSTapnacllg
         {
             return true;
         }
+
+        // If key value is smaller than root value than 
+        // it will be found in the right subtree
         else
         {
             return search(root.right, key);
