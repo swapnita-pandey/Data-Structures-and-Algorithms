@@ -112,6 +112,38 @@ public class btreeapnacllg
         }
     }
 
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            List<Integer> currentLevel = new ArrayList<>();
+            int levelSize = queue.size();
+
+            // Process nodes at the current level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                currentLevel.add(node.val);
+
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+
+            // Add the current level's values to the result
+            result.add(currentLevel);
+        }
+        return result;
+    }
+
     public static int countOfNodes(Node root)
     {
         if(root == null)
