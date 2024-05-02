@@ -178,6 +178,27 @@ public class btreeapnacllg
         return myHeight;
     }
 
+    public static int getLevelUtil(TreeNode node, int data1, int level)
+    {
+        if(node == null)
+            return 0;
+        
+        if(node.data == data1)
+            return level;
+        
+        int downlevel = getLevelUtil(node.left, data1, level+1);
+        if(downlevel != 0)
+            return downlevel;
+        
+        downlevel = getLevelUtil(node.right, data1, level+1);
+        return downlevel;
+    }
+
+    int getLevel(TreeNode node, int data)
+    {
+        return getLevelUtil(node, data, 1);
+    }
+
     public static int diameter(Node root)
     {
         // Case 1: Diameter through root
